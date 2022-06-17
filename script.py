@@ -14,3 +14,7 @@ page_data = bs(response, 'html.parser')
 tickers = page_data.find_all('a', 'Fw(600) C($linkColor)')
 
 print(tickers[:5])
+
+tickers_name = [stock_name.text for stock_name in tickers]
+
+print(tickers_name)
