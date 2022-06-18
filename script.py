@@ -1,5 +1,6 @@
 import requests as rq
 from bs4 import BeautifulSoup as bs
+import pandas as pd
 
 url = rq.get('https://uk.finance.yahoo.com/world-indices/')
 
@@ -52,6 +53,25 @@ print(all_price_change)
 
 percantage_change = page_data.find_all('td', {'aria-label': '% change'})
 
-all_percentage_change = [price_perc_chng.text for price_perc_chng in percantage_change]
+all_percentage_change = [price_perc_chng.text.replace('%', '') for price_perc_chng in percantage_change]
 
 print(all_percentage_change)
+
+# Change all the data to dictionary
+
+indices_data = {
+    'symplols' : tickers_name,
+    'names' : indices,
+    'price' : all_prices,
+    'price change' : all_price_change,
+    'Percentage change' : all_percentage_change
+
+}
+
+# Convert the dictionary to dataframe
+
+indices_data = pd.DataFrame(indices_data)
+
+print(indices_data)
+
+indices_data.to_csv('world_price_indices', index = None)
