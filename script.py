@@ -39,7 +39,7 @@ all_prices = [float(index_price.text.replace(',', '')) for index_price in price]
 print(all_prices)
 
 
-# Get the Change in price from the prvious day
+# Get the Change in price from the previous day
 
 price_change = page_data.find_all('td', {'aria-label': 'Change'})
 
@@ -47,3 +47,11 @@ price_change = page_data.find_all('td', {'aria-label': 'Change'})
 all_price_change = [float(priceChange.text.replace(',', '')) for priceChange in price_change]
 
 print(all_price_change)
+
+# Get the percentage change in price from the previous day
+
+percantage_change = page_data.find_all('td', {'aria-label': '% change'})
+
+all_percentage_change = [price_perc_chng.text for price_perc_chng in percantage_change]
+
+print(all_percentage_change)
