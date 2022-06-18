@@ -2,6 +2,7 @@ import requests as rq
 from bs4 import BeautifulSoup as bs
 import pandas as pd
 
+
 url = rq.get('https://uk.finance.yahoo.com/world-indices/')
 
 print(url.status_code)
@@ -74,4 +75,9 @@ indices_data = pd.DataFrame(indices_data)
 
 print(indices_data)
 
+# Create a csv file of the dataframe
 indices_data.to_csv('world_price_indices', index = None)
+
+
+
+
